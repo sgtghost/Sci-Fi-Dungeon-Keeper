@@ -1,3 +1,5 @@
+import { RoomTree, RoomNode } from "../modules/RoomTree.js"
+import { DungeonRoom } from "../modules/DungeonRoom.js";
 class Unit {
     constructor(cost, health, damage, interval, speed, range, room, pos = [0,0], level = 1) {
         this.cost = cost;
@@ -51,6 +53,12 @@ class Unit {
     }
     resetDebuff() {
         this.debuff = [1, 1];
+    }
+
+    teleportation(des) {
+        this.room.onMobLeave(this);
+        this.room = des;
+        des.onMobEnter(this);
     }
 }
 

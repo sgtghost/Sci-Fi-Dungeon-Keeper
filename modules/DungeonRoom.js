@@ -13,11 +13,29 @@ const FLOOR_D = 4;
 class DungeonRoom
 {
 	constructor() {
-		this.unit = [];
-		this.trap = [];
-		this.spawn = [];
+		this.units = [];
+		this.traps = [];
+		this.spawns = [];
 		this.texture = [];
 	}
+
+	addSpawn(spawn){
+		this.spawns.push(spawn);
+	}
+
+	addTrap(trap){
+		this.traps.push(trap);
+	}
+
+	onMobLeave(mob) {
+		this.units = this.units.filter(unit => unit === mob);
+	}
+
+	onMobEnter(mob) {
+		this.units.push(mob);
+		battle_check?
+	}
+
 	CreateMapTiles(worldCoords)
 	{
 		new MapTile(SOUTH|WEST,new THREE.Vector2(

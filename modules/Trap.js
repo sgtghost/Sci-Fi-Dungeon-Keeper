@@ -31,8 +31,14 @@ class TeleporterTrap extends Trap {
             // do nothing
         } else {
             this.curNode.data.DungeonRoom.unit = this.curNode.data.DungeonRoom.unit.filter(function( obj ) {
-                return this.curNode.data.DungeonRoom;
+                return obj.id !== id;
             });
+            let hero = this.curNode.data.DungeonRoom.unit.filter(
+                u => typeof(u.dodge) !== "undefined" && u.dodge !== null
+            )[0];
+            this.curNode.data.DungeonRoom.unit = this.curNode.data.DungeonRoom.unit.filter(
+                u => typeof(u.dodge) == "undefined" || u.dodge == null
+            );
             let randomNode = this.tree.getRandomNode();
             hero.room =  randomNode;
             randomNode.data.DungeonRoom.unit.push(hero);
