@@ -1,8 +1,12 @@
-import { RoomTree, RoomNode } from "../modules/RoomTree.js" 
+import { RoomTree, RoomNode } from "../modules/RoomTree.js"
 import { CreateWorld } from "../modules/create_world.js"
 import { MapTile } from "../modules/MapTile.js"
 import WebGL from "../js/WebGL.js";
 import {Spawner, SpawnManager} from "../modules/Spawner.js";
+import {DungeonRoom} from "../modules/DungeonRoom.js";
+import {Unit} from "../modules/Unit.js";
+import {TeleporterTrap} from "../modules/Trap.js";
+
 
 const frustumSize = 10;
 let camera,aspect,scene,renderer,gui;
@@ -124,15 +128,35 @@ function main() {
     MapTile.scene = scene;
     CreateWorld();
 
-    const room1 = "room1";
-    const room2 = "room2";
-    const info1 = [1, 2, 3, 4, 5, 6, room1, [0,0],1];
-    const info2 = [1, 2, 3, 4, 5, 6, room2, [0,0],1];
-    const s1 = new Spawner(room1,info1, 5, 2);
-    const s2 = new Spawner(room2,info2, 2, 3);
-    const manager = new SpawnManager();
-    manager.addSpawn(s1);
-    manager.addSpawn(s2);
+
+    const newRoom1 = new DungeonRoom();
+    newRoom1.id = 1;
+    const newRoom2 = new DungeonRoom();
+    newRoom2.id = 2;
+    const info1 = [1, 2, 3, 4, 5, 6, newRoom1, [0,0],1];
+    const unit1 = new Unit(...info1)
+    console.log(unit1);
+    console.log(newRoom1);
+    newRoom1.addUnit(unit1);
+    console.log(unit1);
+    console.log(newRoom1);
+    const trap = new TeleporterTrap(1, 1, 1, newRoom1, [], newRoom2);
+    trap.doHit(unit1);
+
+    console.log(unit1);
+    console.log(newRoom1);
+
+
+
+    // const room1 = "room1";
+    // const room2 = "room2";
+    //
+    // const info2 = [1, 2, 3, 4, 5, 6, room2, [0,0],1];
+    // const s1 = new Spawner(room1,info1, 5, 2);
+    // const s2 = new Spawner(room2,info2, 2, 3);
+    // const manager = new SpawnManager();
+    // manager.addSpawn(s1);
+    // manager.addSpawn(s2);
 
 
 

@@ -1,5 +1,3 @@
-import { RoomTree, RoomNode } from "../modules/RoomTree.js"
-import { DungeonRoom } from "../modules/DungeonRoom.js";
 class Unit {
     constructor(cost, health, damage, interval, speed, range, room, pos = [0,0], level = 1) {
         this.cost = cost;
@@ -10,10 +8,16 @@ class Unit {
         this._range = range;
         this.level = level;
         this.position = pos; // relative positon of unit in the room;
-        this.room = room; //this is the current node of the unit.c
+        this._room = room; //this is the current node of the unit.c
         this.debuff = [1,1];
     }
 
+    get room() {
+        return this._room;
+    }
+    set room(value) {
+        this._room = value;
+    }
     get speed() {
         return this._speed * this.debuff[0];
     }
@@ -55,7 +59,7 @@ class Unit {
         this.debuff = [1, 1];
     }
 
-    teleportation(des) {
+    teleport(des) {
         this.room.onMobLeave(this);
         this.room = des;
         des.onMobEnter(this);

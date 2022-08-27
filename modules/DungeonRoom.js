@@ -12,13 +12,24 @@ const FLOOR_D = 4;
 
 class DungeonRoom
 {
+	static buildList;
+	static nextId = 1;
 	constructor() {
+		//Just for test
+		this._id = DungeonRoom.nextId ++;
+		//
 		this.units = [];
 		this.traps = [];
 		this.spawns = [];
 		this.texture = [];
 	}
-
+	set id(value) {
+		this._id = value;
+	}
+	addUnit(unit){
+		this.units.push(unit);
+		unit.room = this;
+	}
 	addSpawn(spawn){
 		this.spawns.push(spawn);
 	}
@@ -28,12 +39,12 @@ class DungeonRoom
 	}
 
 	onMobLeave(mob) {
-		this.units = this.units.filter(unit => unit === mob);
+		this.units = this.units.filter(unit => unit !== mob);
 	}
 
 	onMobEnter(mob) {
-		this.units.push(mob);
-		battle_check??
+		this.addUnit(mob);
+		// battle_check??
 	}
 
 	CreateMapTiles(worldCoords)
@@ -77,6 +88,7 @@ class DungeonRoom
 		new MapTile(SOUTH, 	new THREE.Vector2(
 			worldCoords.x + MapTile.worldTileDefaults.x * 1, 
 			worldCoords.y + MapTile.worldTileDefaults.y * 0));
+		DungeonRoom.buildList.push(this);
 	}
 }
 

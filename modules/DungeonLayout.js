@@ -7,6 +7,7 @@ const DUNGEON_WIDTH = 8;
 
 function BuildDungeon()
 {
+	DungeonRoom.buildList = new Array();
 	for(var i=0; i<DUNGEON_HEIGHT; i++)
 	{
 		DungeonRooms.push(new Array());
