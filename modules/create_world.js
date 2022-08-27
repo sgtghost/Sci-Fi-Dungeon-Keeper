@@ -82,21 +82,21 @@ new MapTile(NORTH|EAST, new THREE.Vector2(1, 0));
 */
 
 //create some test maptiles in the shape of a room
-function CreateTestRoom()
-{
-	new MapTile(NORTH|WEST, new THREE.Vector2(-2, 2));
-	new MapTile(NORTH, new THREE.Vector2(-1, 2));
-	new MapTile(NORTH, new THREE.Vector2(1, 2));
-	new MapTile(NORTH|EAST, new THREE.Vector2(2, 2));
-	new MapTile(EAST, new THREE.Vector2(2, 1), FLOOR_A);
-	new MapTile(EAST, new THREE.Vector2(2, -1), FLOOR_B);
-	new MapTile(SOUTH|EAST, new THREE.Vector2(2, -2));
-	new MapTile(SOUTH, new THREE.Vector2(1, -2));
-	new MapTile(SOUTH, new THREE.Vector2(-1, -2));
-	new MapTile(SOUTH|WEST, new THREE.Vector2(-2, -2));
-	new MapTile(WEST, new THREE.Vector2(-2, -1), FLOOR_C);
-	new MapTile(WEST, new THREE.Vector2(-2, 1), FLOOR_D);
-}
+// function CreateTestRoom()
+// {
+// 	new MapTile(NORTH|WEST, new THREE.Vector2(-2, 2));
+// 	new MapTile(NORTH, new THREE.Vector2(-1, 2));
+// 	new MapTile(NORTH, new THREE.Vector2(1, 2));
+// 	new MapTile(NORTH|EAST, new THREE.Vector2(2, 2));
+// 	new MapTile(EAST, new THREE.Vector2(2, 1), FLOOR_A);
+// 	new MapTile(EAST, new THREE.Vector2(2, -1), FLOOR_B);
+// 	new MapTile(SOUTH|EAST, new THREE.Vector2(2, -2));
+// 	new MapTile(SOUTH, new THREE.Vector2(1, -2));
+// 	new MapTile(SOUTH, new THREE.Vector2(-1, -2));
+// 	new MapTile(SOUTH|WEST, new THREE.Vector2(-2, -2));
+// 	new MapTile(WEST, new THREE.Vector2(-2, -1), FLOOR_C);
+// 	new MapTile(WEST, new THREE.Vector2(-2, 1), FLOOR_D);
+// }
 
 function CreateWorld()
 {

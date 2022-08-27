@@ -18,7 +18,6 @@ class DungeonRoom
 		this.spawn = [];
 		this.texture = [];
 	}
-
 	CreateMapTiles(worldCoords)
 	{
 		new MapTile(SOUTH|WEST,new THREE.Vector2(

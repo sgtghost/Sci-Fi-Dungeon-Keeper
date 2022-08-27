@@ -30,16 +30,13 @@ class TeleporterTrap extends Trap {
         if (this.uses === 0) {
             // do nothing
         } else {
-            let hero = this.curNode.data.dungeonRoom.unit.filter(
-                u => typeof(u.dodge) !== "undefined" && u.dodge !== null
-            )[0];
-            this.curNode.data.dungeonRoom.unit = this.curNode.data.dungeonRoom.unit.filter(
-                u => typeof(u.dodge) == "undefined" || u.dodge == null
-            );
+            this.curNode.data.DungeonRoom.unit = this.curNode.data.DungeonRoom.unit.filter(function( obj ) {
+                return this.curNode.data.DungeonRoom;
+            });
             let randomNode = this.tree.getRandomNode();
             hero.room =  randomNode;
-            randomNode.data.dungeonRoom.unit.push(hero);
-            //access singleton roomtree here and get a random room in the range, then move the unit to that room
+            randomNode.data.DungeonRoom.unit.push(hero);
+            //access singleton roomTree here and get a random room in the range, then move the unit to that room
             this.uses -= 1
         }
     }
