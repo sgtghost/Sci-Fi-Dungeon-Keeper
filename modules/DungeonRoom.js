@@ -33,7 +33,7 @@ class DungeonRoom
 
 	onMobEnter(mob) {
 		this.units.push(mob);
-		battle_check?
+		battle_check??
 	}
 
 	CreateMapTiles(worldCoords)
