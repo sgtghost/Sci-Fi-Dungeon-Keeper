@@ -65,7 +65,7 @@ class Unit {
     }
     getHit(damage, debuff = [1, 1]) {
         if (this.damage - damage <= 0) {
-            MobManager.getInstance().killUnit(this)
+            MobManager.getInstance().killMob(this)
         } else {
             this.damage -= damage;
         }

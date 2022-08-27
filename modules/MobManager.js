@@ -20,7 +20,7 @@ var MobManager = (function(){
             }
         }
         killMob(unit) {
-            this.mobs.splice(this.mobs.indexOf(unit), 1)
+            this.mobs = this.mobs.filter(mob => mob === unit);
             // drop current energy
         }
         getUnit(unit) {
