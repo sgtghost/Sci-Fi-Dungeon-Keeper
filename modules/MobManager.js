@@ -21,6 +21,9 @@ var MobManager = (function(){
         }
         killMob(unit) {
             this.mobs = this.mobs.filter(mob => mob === unit);
+            unit.room.units = unit.room.units.filter(mob => mob === unit);
+            unit.room = [];
+
             // drop current energy
         }
         getUnit(unit) {

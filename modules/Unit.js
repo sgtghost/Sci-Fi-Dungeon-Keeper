@@ -41,16 +41,16 @@ class Unit {
     }
 
     get health() {
-        return this._health * 2^(this.level - 1);
+        return this._health * Math.pow(2,this.level - 1);
     }
     set health(value) {
-        this._health = value / (2^(this.level - 1));
+        this._health = value / Math.pow(2,this.level - 1);
     }
     get damage() {
-        return this._damage * 2^(this.level - 1);
+        return this._damage * Math.pow(2,this.level - 1);
     }
     set damage(value) {
-        this._damage = value / (2^(this.level - 1));
+        this._damage = value / Math.pow(2,this.level - 1);
     }
     setPosition(value) {
         this._position = value;
@@ -64,10 +64,13 @@ class Unit {
         
     }
     getHit(damage, debuff = [1, 1]) {
-        if (this.damage - damage <= 0) {
+        if (this.health - damage <= 0) {
             MobManager.getInstance().killMob(this)
         } else {
-            this.damage -= damage;
+            console.log(damage);
+            this.health -= damage;
+            console.log(this.health);
+            console.log(this._health);
         }
         this.debuff = debuff;
     }

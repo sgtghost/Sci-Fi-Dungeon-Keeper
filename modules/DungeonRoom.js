@@ -18,12 +18,44 @@ class DungeonRoom
 		this.myDungeonIndex = dungeonIndex;
 		this.myWorldCoords = new THREE.Vector2(dungeonIndex.x + WORLD_MIN_X, dungeonIndex.y + WORLD_MIN_Y);
 		this.isBuilt = false;
-        
-		this.unit = [];
-		this.trap = [];
-		this.spawn = [];
-		this.texture = [];
+
+		this.trap = null;
+		this.units = [];
+		this.spawns = [];
 	}
+
+	addUnit(unit){
+		this.units.push(unit);
+		unit.room = this;
+	}
+	addSpawn(spawn){
+		this.spawns.push(spawn);
+	}
+
+	addTrap(trap){
+		this.trap.push(trap);
+	}
+
+	onMobLeave(mob) {
+		this.units = this.units.filter(unit => unit !== mob);
+	}
+
+	onMobEnter(mob) {
+		this.addUnit(mob);
+		//check the trap first
+		console.log(this.trap);
+		if (this.trap !== null) {
+			this.trap.doHit(mob);
+			console.log(this.trap);
+			console.log(mob);
+		}
+
+		// //do a battle check
+		// if (this.units.length > 1) {
+		//
+		// }
+	}
+
 	CreateMapTiles()
 	{
 		//play sfx for build success

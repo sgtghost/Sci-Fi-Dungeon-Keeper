@@ -1,10 +1,9 @@
 import {DungeonRoom} from "./DungeonRoom.js"
 import {Spawner, SpawnManager} from "../modules/Spawner.js";
+import {Trap} from "../modules/Trap.js";
 
 
-
-
-const DungeonRooms = []; 
+const DungeonRooms = [];
 const DUNGEON_HEIGHT = 8;
 const DUNGEON_WIDTH = 8;
 const WORLD_MIN_X = -3.5;
@@ -17,6 +16,7 @@ var DungeonFactory = (function(){
 			this.rooms = BuildDungeon();
 			this.units = [];
 		}
+
 		getRoom(position) {
 			return this.rooms[position[0]][position[1]]
 		}
@@ -71,10 +71,23 @@ function BuildDungeon()
 	}
 
 	var myRoom = DungeonRooms[0][1];
+	myRoom.trap = new Trap(1, 3, null, myRoom, 2);
+
+	console.log(myRoom);
+
 	const template = [10,10,10,1,1,1,null,[0,1],[-1,3]]
-	var mySpawner = new Spawner(myRoom, template, 2, 5);
+	var mySpawner = new Spawner(myRoom, template, 2, 1);
 	var manager = new SpawnManager();
 	manager.addSpawn(mySpawner);
+
+
+	// var teleDes = DungeonRooms[Math.floor(
+	// 	Math.random() * DungeonRooms.length
+	// )][Math.floor(Math.random() * DungeonRooms[0].length)];
+
+
+
+
 
 	return DungeonRooms
 }

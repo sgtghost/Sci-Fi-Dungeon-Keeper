@@ -51,8 +51,14 @@ class Spawner{
             // let mob = new Unit(...this._template);
             let mob = MobManager.getInstance().createMob(new Unit(10,10,10,1,1,1,scene,[0,1],[3,5]));
             console.log(mob);
+            console.log(mob.health);
             this._units.push(mob);
-            //fight()
+
+            this._room.onMobEnter(mob);
+            if (mob.health > 0) {
+                mob.room = this._room;
+                this._room.units.push(mob);
+            }
             return mob;
         } else {}
     }
